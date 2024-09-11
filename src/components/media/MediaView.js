@@ -1,10 +1,9 @@
 import React from 'react'
 
-
-export const App = () => {
+export const MediaView = () => {
        return (
               <div>
-                     <h1>Hola mundo</h1>
+                     <h1>Media</h1>
               </div>
        )
 }

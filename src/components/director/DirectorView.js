@@ -1,10 +1,9 @@
 import React from 'react'
 
-
-export const App = () => {
+export const DirectorView = () => {
        return (
               <div>
-                     <h1>Hola mundo</h1>
+                     <h1>Director</h1>
               </div>
        )
 }

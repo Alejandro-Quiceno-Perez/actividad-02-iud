@@ -1,10 +1,9 @@
 import React from 'react'
 
-
-export const App = () => {
+export const TipoView = () => {
        return (
               <div>
-                     <h1>Hola mundo</h1>
+                     <h1>Tipo</h1>
               </div>
        )
 }
