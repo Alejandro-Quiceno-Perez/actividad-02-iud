@@ -1,10 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Header } from './components/ui/Header';
+import { DirectorView } from './components/director/DirectorView';
+import { GeneroView } from './components/genero/GeneroView';
+import { MediaView } from './components/media/MediaView';
+import { ProductoraView } from './components/productora/ProductoraView';
+import { TipoView } from './components/tipo/TipoView';
+
 
 
 export const App = () => {
-       return (
-              <div>
-                     <h1>Hola mundo</h1>
-              </div>
-       )
+       return <Router>
+              <Header />
+              <Switch>
+                     <Route exact path='/director' component={ DirectorView } />
+                     <Route exact path='/genero' component={ GeneroView}/>
+                     <Route exact path='/media' component={ MediaView} />
+                     <Route exact path='/productora' component={ ProductoraView} />
+                     <Route exact path='/tipo' component={ TipoView} />
+              </Switch>
+       </Router>
 }
