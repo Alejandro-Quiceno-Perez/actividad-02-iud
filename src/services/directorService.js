@@ -1,15 +1,17 @@
 import { axiosInstance } from "../helper/axios-config";
 
-const getDirector = () => {
-       return axiosInstance.get('director', {
+const getDirectors =  () => {
+       const prueba =  axiosInstance.get('/director', {
               headers: {
                      'Content-Type': 'application/json'
               }
        });
+       console.log(prueba);
+       return prueba;
 }
 
 const postDirector = (data) => {
-       return axiosInstance.post('director', {
+       return axiosInstance.post('/director', data, {
               headers: {
                      'Content-Type': 'application/json'
               }
@@ -17,7 +19,7 @@ const postDirector = (data) => {
 }
 
 const putDirector = (data) => {
-       return axiosInstance.put('director', {
+       return axiosInstance.put('/director', {
               headers: {
                      'Content-Type': 'application/json'
               }
@@ -25,7 +27,5 @@ const putDirector = (data) => {
 }
 
 export {
-       getDirector,
-       postDirector,
-       putDirector
+       getDirectors
 }

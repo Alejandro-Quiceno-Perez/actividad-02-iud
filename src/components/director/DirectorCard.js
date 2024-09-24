@@ -1,23 +1,18 @@
 import React from "react";
-import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const DirectorCard = ({ props }) => {
+export const DirectorCard = ( props ) => {
        const { director } = props;
        return (
               <div className="col">
                      <div className="card">
-                            <img src={foto} className="card-img-top" alt="Img" />
+                            <div className="card-header">
+                                   <h5>{director.nombres}</h5>
+                            </div>
                             <div className="card-body">
-                                   <h5 className="card-title">Características</h5>
-                                   <hr />
-                                   <p className="card-text">{`Serial: ${}`}</p>
-                                   <p className="card-text">{`Marca: ${}`}</p>
-                                   <p className="card-text">{`Descripcion: ${}`}</p>
-                                   <p className="card-text">{`Marca: ${}`}</p>
-                                   <p className="card-text">{`Usuario: ${}`}</p>
-                                   <p className="card-text">
-                                          <a>Ver más...</a>
-                                   </p>
+                                   <p className="card-text">{`Estado: ${director.estado}`}</p>
+                                   <p className="card-text">{`Fecha de Creacion: ${director.fechaCreacion}`}</p>
+                                   <p className="card-text">{`Fecha de Actualizacion: ${director.fechaActualizacion}`}</p>
                             </div>
                      </div>
               </div>

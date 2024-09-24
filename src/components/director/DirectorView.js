@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { getDirector } from '../../services/directorService';
+import { getDirectors } from '../../services/directorService';
 import { DirectorCard } from './DirectorCard';
+import { DirectorNew } from './DirectorNew';
 
 
 export const DirectorView = () => {
        const [directores, setDirectores] = useState([]);
+       const [openModel, setOpenModel] = useState(false);
+
        const listarDirectores = async () => {
               try {
-                     const { data } = await getDirector();
+                     const { data } = await getDirectors();
                      console.log(data);
                      setDirectores(data);
               } catch (error) {
-                     console.log(error.message);
+                     if (error.response) {
+                            // El servidor respondió con un código de estado fuera del rango 2xx
+                            console.error('Error en la respuesta del servidor:', error.response.data);
+                     } else if (error.request) {
+                            // La solicitud fue hecha pero no se recibió respuesta
+                            console.error('No se recibió respuesta del servidor:', error.request);
+                     } else {
+                            // Algo sucedió al configurar la solicitud
+                            console.error('Error al configurar la solicitud:', error.message);
+                     }
               }
        }
 
@@ -19,6 +31,12 @@ export const DirectorView = () => {
        useEffect(() => {
               listarDirectores();
        }, []);
+
+       // Hacemos la negacion de openModel
+       const handleOpenModal = () => {
+              setOpenModel(!openModel);
+       }
+
 
        return (
               <div className='container'>
@@ -29,6 +47,14 @@ export const DirectorView = () => {
                                    })
                             }
                      </div>
+                     {
+                            openModel ? <DirectorNew
+                                   handleOpenModal={handleOpenModal} 
+                                   listarDirectores={listarDirectores} /> : 
+                                   <button className='btn btn-primary btn-add' onClick={handleOpenModal}>
+                                          <i className='bi bi-plus '></i>
+                                   </button>
+                     }
               </div>
-       )
-}
+       );
+};
