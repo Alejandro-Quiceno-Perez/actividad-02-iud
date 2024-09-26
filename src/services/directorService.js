@@ -27,5 +27,6 @@ const putDirector = (data) => {
 }
 
 export {
-       getDirectors
+       getDirectors,
+       postDirector
 }

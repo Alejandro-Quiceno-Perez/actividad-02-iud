@@ -8,6 +8,15 @@ const getGeneros = () => {
        });
 };
 
+const postGenero = (data) => {
+       return axiosInstance.post('/genero', data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
 export {
-       getGeneros
+       getGeneros,
+       postGenero
 }
