@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getTipos } from '../../services/tipoService'
 import { TipoCard } from './TipoCard'
 import { TipoNew } from './TipoNew'
-import { useEffect } from 'react'
 
 export const TipoView = () => {
        const [ tipos, setTipos ] = useState([]);

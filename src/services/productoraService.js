@@ -8,7 +8,16 @@ const getProductoras =  () => {
        });
 };
 
+const postProductora = (data) => {
+       return axiosInstance.post('/productora', data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
 
 export {
-       getProductoras
+       getProductoras,
+       postProductora
 }

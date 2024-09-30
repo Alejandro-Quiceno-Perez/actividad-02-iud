@@ -9,7 +9,7 @@ const getGeneros = () => {
 };
 
 const postGenero = (data) => {
-       return axiosInstance.post('/genero', data, {
+       return axiosInstance.post('/generos', data, {
               headers: {
                      'Content-Type': 'application/json'
               }

@@ -1,21 +1,23 @@
+import React from 'react'
 import { axiosInstance } from "../helper/axios-config";
 
-const getTipos =  () => {
-       return axiosInstance.get('/tipo', {
+const getMedias = () => {
+       return axiosInstance.get('/media', {
               headers: {
                      'Content-Type': 'application/json'
               }
        });
 }
 
-const postTipo = (data) => {
-       return axiosInstance.post('/tipo', data, {
-              headers: {
+const postMedia = (data) => {
+       return axiosInstance.post('/media', data, {
+              header: {
                      'Content-Type': 'application/json'
               }
        });
 }
+
 export {
-       getTipos,
-       postTipo
+       getMedias,
+       postMedia
 }
