@@ -40,7 +40,7 @@ export const DirectorView = () => {
 
        return (
               <div className='container'>
-                     <div className="mt-2 mb-2 row row-cols-md-4 g-4">
+                     <div className="mt-2 mb-2 row row-cols-md-3 g-4">
                             {
                                    directores.map((director) => {
                                           return <DirectorCard key={director._id} director={director} />

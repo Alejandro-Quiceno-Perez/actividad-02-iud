@@ -15,6 +15,9 @@ export const GeneroCard = (props) => {
                                    <p className="card-text">{`Fecha de Creacion: ${genero.fechaCreacion}`}</p>
                                    <p className="card-text">{`Fecha de Actualizacion: ${genero.fechaActualizacion}`}</p>
                             </div>
+                            <div className="modal-footer m-3">
+                                          <Link to={`genero/put/:${genero._id}`} className="btn btn-outline-dark">Actualizar</Link>
+                                   </div>
                      </div>
               </div>
        )

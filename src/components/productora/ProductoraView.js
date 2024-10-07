@@ -36,7 +36,7 @@ export const ProductoraView = () => {
 
        return (
               <div className="container">
-                     <div className="mt-2 mb-2 row row-cols-md-4 g-4">
+                     <div className="mt-2 mb-2 row row-cols-md-3 g-4">
                             {
                                    productoras.map((productora) => {
                                           return <ProductoraCard key={productora._id} productora={productora} />

@@ -35,7 +35,7 @@ export const TipoView = () => {
        }
        return (
               <div className='container'>
-                     <div className="mt-2 mb-2 row row-cols-md-4 g-4">
+                     <div className="mt-2 mb-2 row row-cols-md-3 g-4">
                             {
                                    tipos.map((tipo) => {
                                           return <TipoCard key={tipo._id} tipo={tipo} />

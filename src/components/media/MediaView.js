@@ -35,7 +35,7 @@ export const MediaView = () => {
        }
        return (
               <div className='container'>
-                     <div className="mt-2 mb-2 row row-cols-md-4 g-4">
+                     <div className="mt-2 mb-2 row row-cols-md-3 g-4">
                             {
                                    medias.map((media) => {
                                           return <MediaCard key={media._id} media={media} />

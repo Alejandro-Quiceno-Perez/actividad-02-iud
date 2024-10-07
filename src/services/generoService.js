@@ -16,7 +16,25 @@ const postGenero = (data) => {
        });
 }
 
+const putGenero = (generoId, data) => {
+       return axiosInstance.put(`/generos/${generoId}`, data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const getGeneroById = (generoId) => {
+       return axiosInstance.get(`/generos/${generoId}`, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
 export {
        getGeneros,
-       postGenero
+       postGenero,
+       putGenero,
+       getGeneroById
 }

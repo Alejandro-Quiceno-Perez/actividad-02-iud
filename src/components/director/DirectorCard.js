@@ -14,6 +14,7 @@ export const DirectorCard = ( props ) => {
                                    <p className="card-text">{`Fecha de Creacion: ${director.fechaCreacion}`}</p>
                                    <p className="card-text">{`Fecha de Actualizacion: ${director.fechaActualizacion}`}</p>
                             </div>
+                            <div className=""></div>
                      </div>
               </div>
        )
