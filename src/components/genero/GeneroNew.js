@@ -40,7 +40,6 @@ export const GeneroNew = ({ handleOpenModal, listarGeneros }) => {
                      Swal.showLoading();
                      const { data } = await postGenero(genero);
                      handleOpenModal();
-                     listarGeneros();
                      Swal.close();
                      listarGeneros();
               } catch (error) {
