@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getGeneroById, putGenero } from '../../services/generoService';
 import Swal from 'sweetalert2';
 
 export const GeneroUpdate = () => {
+       const url = '/genero';
        const { generoId = '' } = useParams();
        const [genero, setGenero] = useState();
        const [valoresForm, setValoresForm] = useState([]);
@@ -31,6 +33,10 @@ export const GeneroUpdate = () => {
                      Swal.close();
               }
        }
+
+       useEffect(() => {
+              getGenero();
+       }, [generoId])
 
        useEffect(() => {
               if (genero) {
@@ -88,6 +94,7 @@ export const GeneroUpdate = () => {
                      });
               }
        }
+
        return (
               <div className="container-modal">
                      <div className="container-header">
@@ -110,11 +117,11 @@ export const GeneroUpdate = () => {
 
                                           <div className="col">
                                                  <label htmlFor="fechaCreacion" className="form-label">Fecha de Creacion</label>
-                                                 <input type="Date" name='fechaCreacion' className="form-control" id="fechaCreacion" placeholder='AAAA-MM-DD' required value={fechaCreacion} onChange={e => handleOnChange(e)} />
+                                                 <input type="Date" name='fechaCreacion' className="form-control" required value={fechaCreacion} onChange={e => handleOnChange(e)} />
                                           </div>
                                           <div className="col">
                                                  <label htmlFor="fechaActualizacion" className="form-label">Fecha de actualizacion</label>
-                                                 <input type="Date" name='fechaActualizacion' className="form-control" id="fechaActualizacion" placeholder='AAAA-MM-DD' required value={fechaActualizacion} onChange={e => handleOnChange(e)} />
+                                                 <input type="Date" name='fechaActualizacion' className="form-control" value={fechaActualizacion} onChange={e => handleOnChange(e)} />
                                           </div>
                                    </div>
                                    <div className="mb-3">
@@ -122,7 +129,7 @@ export const GeneroUpdate = () => {
                                           <textarea type="" name='descripcion' className="form-control" id="descripcionGenero" placeholder='Escribe el nombre aqui' required value={descripcion} onChange={e => handleOnChange(e)} />
                                    </div>
                                    <div className="modal-footer">
-                                          <button className="btn btn-success">Guardar</button>
+                                          <button onClick={() => {window.location.href = url;}} className="btn btn-success" >Guardar</button>
                                    </div>
                             </form>
                      </div>

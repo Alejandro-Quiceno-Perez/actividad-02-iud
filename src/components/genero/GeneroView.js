@@ -4,8 +4,8 @@ import { GeneroCard } from './GeneroCard'
 import { GeneroNew } from './GeneroNew'
 
 export const GeneroView = () => {
-       const [ generos, setGeneros ] = useState([]);
-       const [ openModal, setOpenModal ] = useState(false)
+       const [generos, setGeneros] = useState([]);
+       const [openModal, setOpenModal] = useState(false)
 
        const listarGeneros = async () => {
               try {
@@ -30,9 +30,9 @@ export const GeneroView = () => {
               listarGeneros();
        }, []);
 
-const handleOpenModal = () => {
-       setOpenModal(!openModal);
-}
+       const handleOpenModal = () => {
+              setOpenModal(!openModal);
+       }
 
        return (
               <div className="container">
@@ -45,8 +45,8 @@ const handleOpenModal = () => {
                      </div>
                      {
                             openModal ? <GeneroNew
-                                   handleOpenModal={handleOpenModal} 
-                                   listarDirectores={listarGeneros} /> : 
+                                   handleOpenModal={handleOpenModal}
+                                   listarDirectores={listarGeneros} /> :
                                    <button className='btn btn-primary btn-add' onClick={handleOpenModal}>
                                           <i className='bi bi-plus '></i>
                                    </button>
