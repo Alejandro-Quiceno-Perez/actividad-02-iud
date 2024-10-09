@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { getGeneroById, deleteGenero } from '../../services/generoService';
+import { deleteGenero } from '../../services/generoService';
 import Swal from 'sweetalert2';
 
 export const GeneroCard = (props) => {

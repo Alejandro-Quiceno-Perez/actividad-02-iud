@@ -46,7 +46,7 @@ export const GeneroView = () => {
                      {
                             openModal ? <GeneroNew
                                    handleOpenModal={handleOpenModal}
-                                   listarDirectores={listarGeneros} /> :
+                                   listarGeneros={listarGeneros} /> :
                                    <button className='btn btn-primary btn-add' onClick={handleOpenModal}>
                                           <i className='bi bi-plus '></i>
                                    </button>

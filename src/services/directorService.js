@@ -18,8 +18,24 @@ const postDirector = (data) => {
        });
 }
 
-const putDirector = (data) => {
-       return axiosInstance.put('/director', {
+const putDirector = (directorId, data) => {
+       return axiosInstance.put(`/director/${directorId}`,data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const getDirectorById = (directorId, data) => {
+       return axiosInstance.get(`/director/${directorId}`,data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const deleteDirector = (directorId, data) => {
+       return axiosInstance.delete(`/director/${directorId}`,data, {
               headers: {
                      'Content-Type': 'application/json'
               }
@@ -28,5 +44,8 @@ const putDirector = (data) => {
 
 export {
        getDirectors,
-       postDirector
+       postDirector,
+       putDirector,
+       getDirectorById,
+       deleteDirector
 }

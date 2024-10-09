@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styleModal from '../../styles/styleModal.css'
 import { postGenero } from '../../services/generoService';
 import Swal from "sweetalert2";
 
-export const GeneroNew = ({ handleOpenModal, listarGeneros }) => {
+const GeneroNew = ({ handleOpenModal, listarGeneros }) => {
        const [valoresFrom, setValoresForm] = useState([]);
 
        const {
@@ -39,7 +39,9 @@ export const GeneroNew = ({ handleOpenModal, listarGeneros }) => {
                      });
                      Swal.showLoading();
                      const { data } = await postGenero(genero);
+                     console.log(data);
                      handleOpenModal();
+                     listarGeneros();
                      Swal.close();
                      listarGeneros();
               } catch (error) {
@@ -92,3 +94,5 @@ export const GeneroNew = ({ handleOpenModal, listarGeneros }) => {
               </div>
        )
 }
+
+export {GeneroNew}
