@@ -8,6 +8,8 @@ import { ProductoraView } from './components/productora/ProductoraView';
 import { TipoView } from './components/tipo/TipoView';
 import { GeneroUpdate } from './components/genero/GeneroUpdate';
 import { DirectorUpdate } from './components/director/DirectorUpdate'
+import { ProductoraUpdate } from './components/productora/ProductoraUpdate';
+import { TipoUpdate } from './components/tipo/TipoUpdate'
 
 
 
@@ -22,6 +24,8 @@ export const App = () => {
                      <Route exact path='/tipo' component={TipoView} />
                      <Route exact path='/genero/put/:generoId' component={GeneroUpdate} />
                      <Route exact path='/director/put/:directorId' component={DirectorUpdate} />
+                     <Route exact path='/productora/put/:productoraId' component={ProductoraUpdate} />
+                     <Route exact path='/tipo/put/:tipoId' component={TipoUpdate} />
               </Switch>
        </Router>
 }

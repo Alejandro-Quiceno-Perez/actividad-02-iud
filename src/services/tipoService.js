@@ -15,7 +15,35 @@ const postTipo = (data) => {
               }
        });
 }
+
+const putTipo = (tipoId, data) => {
+       return axiosInstance.put(`/tipo/${tipoId}`, data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const getTipoById = (tipoId) => {
+       return axiosInstance.get(`/tipo/${tipoId}`, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const deleteTipo = (tipoId, data) => {
+       return axiosInstance.delete(`/tipo/${tipoId}`, data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
 export {
        getTipos,
-       postTipo
+       postTipo,
+       putTipo,
+       getTipoById,
+       deleteTipo
 }

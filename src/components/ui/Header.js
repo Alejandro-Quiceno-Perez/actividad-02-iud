@@ -23,7 +23,7 @@ export const Header = () => {
                                                  <NavLink className="nav-link" activeClassName="active" exact to="/tipo">Tipo</NavLink>
                                           </li>
                                           <li className="nav-item">
-                                                 <NavLink className="nav-link" activeClassName="active" exact to="/Media" >Media</NavLink>
+                                                 <NavLink className="nav-link" activeClassName="active" exact to="/media" >Media</NavLink>
                                           </li>
                                    </ul>
                             </div>

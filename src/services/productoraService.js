@@ -16,8 +16,35 @@ const postProductora = (data) => {
        });
 }
 
+const putProductora = (productoraId, data) => {
+       return axiosInstance.put(`/productora/${productoraId}`, data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const getProductoraById = (productoraId) =>{
+       return axiosInstance.get(`/productora/${productoraId}`, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const deleteProductora = (productoraId, data) => {
+       return axiosInstance.delete(`/productora/${productoraId}`, data, {
+              headers: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
 
 export {
        getProductoras,
-       postProductora
+       postProductora,
+       putProductora,
+       getProductoraById,
+       deleteProductora
 }

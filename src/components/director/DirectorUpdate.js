@@ -97,6 +97,9 @@ export const DirectorUpdate = () => {
                      <div className="container-header">
                             <div className='sidebar-header d-flex justify-content-between'>
                                    <h3>Actualizar Director</h3>
+                                   <button className='btn btn-danger' onClick={() => { window.location.href = url; }}>
+                                          <i className="bi bi-x"></i>
+                                   </button>
                             </div>
                             <form className='form' onSubmit={(e) => handleOnSubmit(e)}>
                                    <div className="mb-3">
