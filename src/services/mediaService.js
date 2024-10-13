@@ -17,7 +17,33 @@ const postMedia = (data) => {
        });
 }
 
+const putMedia = (mediaId, data) => {
+       return axiosInstance.put(`/media/${mediaId}`, data, {
+              header: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const getMediaById = (mediaId, data) => {
+       return axiosInstance.get(`/media/${mediaId}`, data, {
+              header: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
+
+const deleteMedia = (mediaId, data) => {
+       return axiosInstance.delete(`/media/${mediaId}`, data, {
+              header: {
+                     'Content-Type': 'application/json'
+              }
+       });
+}
 export {
        getMedias,
-       postMedia
+       postMedia,
+       putMedia,
+       getMediaById,
+       deleteMedia
 }

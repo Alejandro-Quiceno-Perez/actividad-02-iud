@@ -10,6 +10,7 @@ import { GeneroUpdate } from './components/genero/GeneroUpdate';
 import { DirectorUpdate } from './components/director/DirectorUpdate'
 import { ProductoraUpdate } from './components/productora/ProductoraUpdate';
 import { TipoUpdate } from './components/tipo/TipoUpdate'
+import { MediaUpdate } from './components/media/MediaUpdate';
 
 
 
@@ -26,6 +27,7 @@ export const App = () => {
                      <Route exact path='/director/put/:directorId' component={DirectorUpdate} />
                      <Route exact path='/productora/put/:productoraId' component={ProductoraUpdate} />
                      <Route exact path='/tipo/put/:tipoId' component={TipoUpdate} />
+                     <Route exact path='/media/put/:mediaId' component={MediaUpdate} />
               </Switch>
        </Router>
 }

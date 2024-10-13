@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { getDirectors } from '../../services/directorService'
-import { getGeneros } from '../../services/generoService'
-import { getProductoras } from '../../services/productoraService'
-import { getTipos } from '../../services/tipoService'
-import { postMedia } from '../../services/mediaService'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { getMediaById, putMedia } from '../../services/mediaService'
+import { getTipos } from '../../services/tipoService';
+import { getProductoras } from '../../services/productoraService';
+import { getDirectors } from '../../services/directorService';
+import { getGeneros } from '../../services/generoService';
 import Swal from 'sweetalert2';
 
-export const MediaNew = ({ handleOpenModal, listMedias }) => {
+export const MediaUpdate = () => {
+       const urlMedia = '/media'
+       const { mediaId = '' } = useParams();
+       const [media, setMedia] = useState();
+       const [ tipos, setTipos] = useState([]);
+       const [productoras, setProductoras] = useState([]);
        const [directores, setDirectores] = useState([]);
        const [generos, setGeneros] = useState([]);
-       const [productoras, setProductoras] = useState([]);
        const [valoresForm, setValoresForm] = useState([]);
-       const [tipos, setTipos] = useState([]);
-       const {
-              titulo = '',
-              serial = '',
-              sinopsis = '',
-              url = '',
-              imagenPortada = '',
-              añoEstreno = '',
-              fechaCreacion = '',
-              fechaActualizacion = '',
-              generoPrincipal = '',
-              directorPrincipal = '',
-              productora = '',
-              tipo = ''
-       } = valoresForm;
-
        const listarGeneros = async () => {
               try {
                      const { data } = await getGeneros();
@@ -79,51 +69,129 @@ export const MediaNew = ({ handleOpenModal, listMedias }) => {
               listTipos();
        }, []);
 
-       const handleOnChange = ({ target }) => {
-              const { name, value } = target;
-              setValoresForm({ ...valoresForm, [name]: value });
-       }
+       const {
+              titulo = '',
+              descripcion = '',
+              estado = '',
+              fechaCreacion = '',
+              fechaActualizacion = '',
+              tipo = '',
+              productora = '',
+              directorPrincipal = '',
+              generoPrincipal = '',
+              url = '',
+              serial = '',
+              sinopsis = '',
+              imagenPortada = '',
+              añoEstreno = ''
+       } = valoresForm;
 
-       const handleOnSubmit = async (e) => {
-              e.preventDefault();
-              const media = {
-                     serial,
-                     titulo,
-                     sinopsis,
-                     url,
-                     imagenPortada,
-                     añoEstreno,
-                     fechaCreacion,
-                     fechaActualizacion,
-                     generoPrincipal: {
-                            _id: generoPrincipal
-                     },
-                     directorPrincipal: {
-                            _id: directorPrincipal
-                     },
-                     productora: {
-                            _id: productora
-                     },
-                     tipo: {
-                            _id: tipo
-                     }
-              }
-              console.log(media);
-
+       const getMedia = async () => {
               try {
                      Swal.fire({
                             allowOutsideClick: false,
-                            text: 'Loading...'
+                            text: 'Loading....'
                      });
                      Swal.showLoading();
-                     const { data } = await postMedia(media);
+                     const { data } = await getMediaById(mediaId);
                      console.log(data);
-                     handleOpenModal();
-                     listMedias();
+                     setMedia(data);
                      Swal.close();
               } catch (error) {
                      console.log(error.message);
                      Swal.close();
+              }
+       }
+
+       useEffect(() => {
+              getMedia();
+       }, [mediaId]);
+
+       useEffect(() => {
+              if (media) {
+                     setValoresForm({
+                            titulo: media.titulo,
+                            descripcion: media.descripcion,
+                            estado: media.estado,
+                            fechaCreacion: media.fechaCreacion,
+                            fechaActualizacion: media.fechaActualizacion,
+                            tipo: media.tipo,
+                            productora: media.productora,
+                            directorPrincipal: media.directorPrincipal,
+                            generoPrincipal: media.generoPrincipal,
+                            url: media.url,
+                            serial: media.serial,
+                            sinopsis: media.sinopsis,
+                            imagenPortada: media.imagenPortada,
+                            añoEstreno: media.añoEstreno
+                     })
+              }
+       }, [media]);
+
+       const handleOnChange = ({ target }) => {
+              const { name, value } = target;
+              setValoresForm({
+                     ...valoresForm,
+                     [name]: value
+              });
+       }
+
+
+       const handleOnSubmit = async (e) => {
+              e.preventDefault();
+              const media = {
+                     titulo,
+                     descripcion,
+                     estado,
+                     fechaCreacion,
+                     fechaActualizacion,
+                     tipo: {
+                            _id: tipo
+                     },
+                     productora:{
+                            _id: productora
+                     },
+                     directorPrincipal: {
+                            _id: directorPrincipal
+                     },
+                     generoPrincipal: {
+                            _id: generoPrincipal
+                     },
+                     url,
+                     serial,
+                     sinopsis,
+                     imagenPortada,
+                     añoEstreno
+              }
+              console.log(media);
+              try {
+                     Swal.fire({
+                            allowOutsideClick: false,
+                            text: 'Loading....'
+                     });
+                     Swal.showLoading();
+                     const { data } = await putMedia(mediaId, media);
+                     console.log(data);
+                     Swal.close();
+                     Swal.fire({
+                            icon: 'success',
+                            title: 'Exito',
+                            text: 'Media actualizada correctamente'
+                     });
+              } catch (error) {
+                     console.log(error.message);
+                     Swal.close();
+                     let mensaje;
+                     if (error && error.response && error.response.data) {
+                            mensaje = error.response.data.message;
+                     } else {
+                            mensaje = "Ocurrio un error, intente nuevamente";
+                     }
+                     Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: mensaje
+                     });
               }
        }
 
@@ -132,7 +200,7 @@ export const MediaNew = ({ handleOpenModal, listMedias }) => {
                      <div className="container-header">
                             <div className='sidebar-header d-flex justify-content-between'>
                                    <h3>Nuevo recurso</h3>
-                                   <button className='btn btn-danger' onClick={handleOpenModal}>
+                                   <button className='btn btn-danger' onClick={() => { window.location.href = urlMedia; }}>
                                           <i className="bi bi-x"></i>
                                    </button>
                             </div>
@@ -240,7 +308,7 @@ export const MediaNew = ({ handleOpenModal, listMedias }) => {
                                           </div>
                                    </div>
                                    <div className="modal-footer">
-                                          <button className='btn btn-success'>Guardar</button>
+                                          <button onClick={() => { window.location.href = urlMedia; }} className="btn btn-success" >Guardar</button>
                                    </div>
                             </form>
                      </div>
